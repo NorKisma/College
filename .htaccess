@@ -1,0 +1,12 @@
+# Disable directory browsing
+Options -Indexes
+
+# Prevent access to sensitive files
+<FilesMatch "^\.env|.*\.sql|composer\.json|composer\.lock">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protect system folders (alternative to separate .htaccess files)
+RewriteEngine On
+RewriteRule ^(config|helpers|models|vendor|controllers)/ - [F,L]
